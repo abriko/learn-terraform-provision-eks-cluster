@@ -1,11 +1,11 @@
 module "eks" {
   source          = "terraform-aws-modules/eks/aws"
   cluster_name    = local.cluster_name
-  cluster_version = "1.17"
+  cluster_version = var.eks_version
   subnets         = module.vpc.private_subnets
 
   tags = {
-    Environment = "${var.project_name}"
+    Environment = var.project_name
     GithubRepo  = "terraform-aws-eks"
     GithubOrg   = "terraform-aws-modules"
   }
