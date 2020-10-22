@@ -10,6 +10,7 @@ variable "project_name" {
 
 # https://docs.aws.amazon.com/eks/latest/userguide/kubernetes-versions.html
 variable "eks_version" {
-  default     = "1.17"
+  default     = 1.17
+  type        = number
   description = "EKS cluster version"
 }
