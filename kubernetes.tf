@@ -34,6 +34,11 @@ resource "helm_release" "rancher-server" {
 
   set {
     name  = "hostname"
-    value = data.aws_eks_cluster.cluster.endpoint
+    value = "rancher.a.com"
+  }
+
+  set {
+    name  = "tls"
+    value = "external"
   }
 }
