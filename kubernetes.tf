@@ -16,6 +16,8 @@ resource "kubernetes_namespace" "cattle-system" {
 }
 
 provider "helm" {
+  version = ">= 1.3.2"
+
   kubernetes {
     load_config_file       = "false"
     host                   = data.aws_eks_cluster.cluster.endpoint
@@ -24,10 +26,14 @@ provider "helm" {
   }
 }
 
+data "helm_repository" "rancher" {
+  name = "rancher"
+  url  = "https://releases.rancher.com/server-charts/latest"
+}
+
 resource "helm_release" "rancher-server" {
   name  = "rancher"
   chart = "rancher-latest/rancher"
-  repository = "https://releases.rancher.com/server-charts/latest"
   namespace = "cattle-system"
 
   set {
