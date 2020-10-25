@@ -20,7 +20,7 @@ variable "sg_ingress_rules" {
       from_port   = number
       to_port     = number
       protocol    = string
-      cidr_block  = array
+      cidr_block  = list(string)
       description = string
     }))
     default     = [
